@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>KeyframeEjemplo</title>
+	<link rel="stylesheet" href="normalize.css">
+	<link rel="stylesheet" type="text/css" href="proyectoRelojcss.css">
+	<script src="modernizr-custom.js"></script>
+
+</head>
+<body>
+	<div id="content">
+		<div id="horas1" class="rueda" >
+		</div>
+		<div id="horas2" class="rueda" >
+		</div>
+		<div id="minutos1" class="rueda" >
+		</div>
+		<div id="minutos2" class="rueda" >
+		</div>
+		<div id="seconds1" class="rueda" >
+		</div>
+		<div id="seconds2" class="rueda" >
+		</div>
+	</div>
+<script>
+	function llenarRueda(rueda,inicio,limite)
+	{
+		var ruedaReloj=document.getElementById(rueda);
+
+		cadena="";
+		for (i=inicio;i<10;i++){
+			cadena=cadena+"<div class='card c"+ i +"'>";
+			if(i<=limite) cadena=cadena+i;
+			cadena=cadena+"</div>";
+		}
+		for (i=0;i<inicio;i++){
+			cadena=cadena+"<div class='card c"+ i +"'>";
+			if(i<=limite) cadena=cadena+i;
+			cadena=cadena+"</div>";
+		}
+		ruedaReloj.innerHTML=cadena;
+	}
+	var time=new Date();
+
+	var horas1=time.getHours();
+	while(horas1%10!=0)horas1--;
+	horas1=horas1/10;
+	llenarRueda("horas1",horas1,2);
+
+	var horas2=time.getHours();
+	horas2=horas2-(horas1*10);
+	llenarRueda("horas2",horas2,9);
+
+	var minutos1=time.getMinutes();
+	while(minutos1%10!=0)minutos1--;
+	minutos1=minutos1/10;
+	llenarRueda("minutos1",minutos1,5);
+
+	var minutos2=time.getMinutes();
+	minutos2=minutos2-(minutos1*10);
+	llenarRueda("minutos2",minutos2,9);
+
+	var seconds1=time.getSeconds();
+	while(seconds1%10!=0)seconds1--;
+	seconds1=seconds1/10;
+	llenarRueda("seconds1",seconds1,5);
+
+	var seconds2=time.getSeconds();
+	seconds2=seconds2-(seconds1*10);
+	llenarRueda("seconds2",seconds2,9);
+
+
+
+</script>	
+
+</body>
+
+</html>
